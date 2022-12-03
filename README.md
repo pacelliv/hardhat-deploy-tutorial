@@ -901,8 +901,8 @@ Go back to [Etherscan](https://goerli.etherscan.io/) and check in the `Contract`
 
 ## Resources
 
-[Hardhat documentation](https://hardhat.org/docs)
-[Hardhat Deploy Plugin](https://github.com/wighawag/hardhat-deploy)
+-   [Hardhat documentation](https://hardhat.org/docs)
+-   [Hardhat Deploy Plugin](https://github.com/wighawag/hardhat-deploy)
 
 ## Thank You 🎊 🎊
 
