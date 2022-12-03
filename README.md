@@ -31,7 +31,7 @@ To fully comprehend this tutorial you should know how to:
 
 If you don't know any of the aforementioned points, please take your time to do your research.
 
-## A. Setting up the environment
+## A. Setting Up The Environment
 
 ### Installing Node.js
 
@@ -59,7 +59,7 @@ For this tutorial we will use [Yarn] as our package manager. To install it run i
 npm install -g yarn
 ```
 
-## B. Setting up a Hardhat Project
+## B. Setting Up A Hardhat Project
 
 To create a new Hardhat project run in your terminal the following commands:
 
