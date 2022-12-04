@@ -865,7 +865,7 @@ module.exports = {
 
 The `dotenv` plugin will import your environment variables from the `.env` file.
 
-Also in you deploy script the argument field to look like this: `args: [deployer]`, this is necessary because there's only one account provided in our `network` config for goerli.
+Also in your deploy script modify the args field to look like this: `args: [deployer]`, this is necessary because there's only one account provided in our `network` config for goerli.
 
 Now you only need to get some tesnet funds, you can get some from the [Alchemy's goerli faucet](https://goerlifaucet.com/).
 
