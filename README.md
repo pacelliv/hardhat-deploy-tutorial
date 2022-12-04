@@ -374,7 +374,7 @@ Writing your own automated tests when building a smart contract project it's of 
 
 To write our tests we're going to use `ethers.js` library to interact with the Ethereum contract we built on the previous section, and [Mocha](https://mochajs.org/) will be our test runner.
 
-To be able to run our test we need to import `require("@nomiclabs/hardhat-waffle");`, import this plugin in you `hardhat.config.js`.
+To be able to run your test we need to import `require("@nomiclabs/hardhat-waffle");` plugin in your `hardhat.config.js`.
 
 ```javascript
 require("hardhat-deploy")
