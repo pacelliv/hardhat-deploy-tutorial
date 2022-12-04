@@ -100,17 +100,17 @@ Hardhat is unopinionated in terms of what tools you end up using, but it does co
 
 For this tutorial we're going to use the `hardhat-deploy` and `hardhat-deploy-ethers` plugins -- these plugins will allow us to interact with Ethereum and to test our contracts. Also to create a robust development enviroment we will install `ethers`, `chai`, `ethereum-waffle` and other plugins. Feel free to investigate each after installing them.
 
-To install them run in your project directory:
+To install the dependencies paste in your terminal the following command:
 
 ```
 yarn add -D @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers@^0.3.0-beta.13 ethers hardhat-deploy dotenv solidity-coverage prettier ethereum-waffle chai @nomiclabs/hardhat-waffle
 ```
 
-Update your `hardhat.config.js` so it looks like this:
+Let's import `@nomiclabs/hardhat-ethers` to `hardhat.config.js`, this plugin will bring `ethers.js` library into hardhat.
 
 ```javascript
 require("hardhat-deploy")
-require("hardha-deply-ethers")
+require("@nomiclabs/hardhat-ethers")
 
 module.exports = {
     solidity: {
@@ -140,7 +140,7 @@ Hardhat uses by default a `contracts` directory as the source folder to, but in 
 
 ```javascript
 require("hardhat-deploy")
-require("hardha-deply-ethers")
+require("@nomiclabs/hardhat-ethers")
 
 module.exports = {
     solidity: {
@@ -156,7 +156,7 @@ Create a new directory called `src` and create a file inside called `Token.sol`.
 
 Paste the code below into the file and take the time you need to read and understand the contract. The contract is quite simple and it's full of comments explaining some of the basics of Solidity.
 
-Note: To get syntax highlighting you should add Solidity support to your text editor. I recommend installing [Solidity](https://marketplace.visualstudio.com/items?itemName=NomicFoundation.hardhat-solidity)
+Note: To get syntax highlighting you should add Solidity support to your text editor. I recommend installing [Solidity](https://marketplace.visualstudio.com/items?itemName=NomicFoundation.hardhat-solidity).
 
 ```javascript
 // SPDX-License-Identifier: MIT
@@ -182,9 +182,10 @@ contract Token {
     // A mapping is a key/value map. Here we store each account balance.
     mapping(address => uint256) balances;
 
-    // The Transfer event helps off-chain application understand what happens
+    // Events helps off-chain application understand what happens
     // within your contract
     event Transfer(address indexed _from, address _to, uint256 _value);
+    event Burn(address indexed _from, address _to, uint256 _value);
 
     /**
      * Contract initialization.
@@ -229,7 +230,7 @@ contract Token {
         balances[msg.sender] -= amount;
         totalSupply -= amount;
 
-        emit Transfer(msg.sender, address(0), amount);
+        emit Burn(msg.sender, address(0), amount);
     }
 
     /**
@@ -352,7 +353,7 @@ module.exports = async (hre) => {
     })
 }
 
-module.exports.tags = ["token"] // this set up a tag so you can execute the script on its own.
+module.exports.tags = ["token"] // this set up a tag so you can execute the script on its own. This will be useful at the moment of testing your contract.
 ```
 
 Not as mentioned in the comment, the name of the deployed contract is set to be the same name as the contract name: `Token`. You can also deploy different version of it by simply using a different name for it and declaring the source for that deployment, like this:
@@ -373,9 +374,34 @@ Writing your own automated tests when building a smart contract project it's of 
 
 To write our tests we're going to use `ethers.js` library to interact with the Ethereum contract we built on the previous section, and [Mocha](https://mochajs.org/) will be our test runner.
 
+To be able to run our test we need to import `require("@nomiclabs/hardhat-waffle");`, import this plugin in you `hardhat.config.js`.
+
+```javascript
+require("hardhat-deploy")
+require("@nomiclabs/hardhat-ethers")
+require("@nomiclabs/hardhat-waffle")
+
+module.exports = {
+    solidity: {
+        version: "0.8.8",
+    },
+    namedAccounts: {
+        deployer: {
+            default: 0,
+        },
+        tokenOwner: {
+            default: 1,
+        },
+    },
+    paths: {
+        sources: "src",
+    },
+}
+```
+
 ### Writing tests
 
-Create a new directory called `test` in the project root directory; inside the `test` directory create a new file called `token.test.js`.
+Create a new directory called `test` in the project root directory; inside the `test` create a new file called `token.test.js`.
 
 We will build our test step by step and we will start the code below, for now paste it into `token.test.js`.
 
@@ -785,7 +811,7 @@ To deploy to a live network, you first need to choose to which network you want 
 yarn hardhat deploy --network <network_name>
 ```
 
-### Deploying to a live network
+### Deploying to Goerli
 
 Before deploying to a live network such a mainnet or any tesnet, we need to complete a few steps - first, you need to add a `network` config to your `hardhat.config.js` file. We'll deploy our contract in Goerli, but you can add any other network, not only from Ethereum.
 
@@ -809,7 +835,7 @@ require("@nomiclabs/hardhat-waffle")
 require("solidity-coverage")
 require("dotenv").config()
 
-const GOERLI_RPC_URL = process.env.RPC_URL_GOERLI_ALCHEMY
+const RPC_URL = process.env.RPC_URL
 const PRIVATE_KEY = process.env.PRIVATE_KEY
 
 module.exports = {
@@ -818,7 +844,7 @@ module.exports = {
     },
     networks: {
         goerli: {
-            url: GOERLI_RPC_URL,
+            url: RPC_URL,
             accounts: [PRIVATE_KEY],
             chainId: 5,
         },
@@ -838,6 +864,8 @@ module.exports = {
 ```
 
 The `dotenv` plugin will import your environment variables from the `.env` file.
+
+Also in you deploy script the argument field to look like this: `args: [deployer]`, this is necessary because there's only one account provided in our `network` config for goerli.
 
 Now you only need to get some tesnet funds, you can get some from the [Alchemy's goerli faucet](https://goerlifaucet.com/).
 
