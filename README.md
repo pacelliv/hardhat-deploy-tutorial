@@ -589,7 +589,7 @@ async function setup() {
     // After getting the user object returned by setup(), these objetcs allow you to write things like `users[0].Token.transfer(...)`
     const users = await setUsers(await getUnnamedAccounts(), contracts)
 
-    // We return the whole object (including tokenOwner setup as a User object)
+    // Return the whole object (including tokenOwner setup as an User object)
     return {
         ...contracts,
         users,
