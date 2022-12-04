@@ -303,7 +303,7 @@ require("@nomiclabs/hardhat-ethers")
 
 module.exports = {
     solidity: {
-        version: "0.7.6",
+        version: "0.8.8",
     },
     namedAccounts: {
         deployer: {
@@ -932,6 +932,6 @@ Go back to [Etherscan](https://goerli.etherscan.io/) and check in the `Contract`
 -   [Hardhat documentation](https://hardhat.org/docs)
 -   [Hardhat Deploy Plugin](https://github.com/wighawag/hardhat-deploy)
 
-## Thank You 🎊 🎊
+## Outro ⭐️
 
-I hope this tutorial ends up being useful to you, and if you want to contribute PRs are welcome. 👩🏻‍💻 👨🏻‍💻
+Congratulations 💯 for completing this tutorial, I hope it ends up being useful to you, and if you want to contribute, PRs are welcome. 👩🏻‍💻 🎉 👨🏻‍💻 🎉
