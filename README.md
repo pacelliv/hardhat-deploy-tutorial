@@ -620,7 +620,7 @@ describe("Token contract", function () {
         // `it` is another Mocha function, this is the one you use to define your tests. It receives the test
         // name and a callback function
 
-        // If the callback is async, you can use `await` keyword in in you test
+        // If the callback is async, you can use `await` keyword in your test
         it("Set the owner correctly", async function () {
             // Expect receives a value, and wraps it in an Assertion object. These objects have a lof of
             // utility methods to assert values.
@@ -638,7 +638,7 @@ describe("Token contract", function () {
 
     describe("Transactions", function () {
         it("Tx should fail if sender doesn't have enough tokens", async function () {
-            // tries to send 100000 tokens from user[0] to user[1]
+            // Tries to send 100000 tokens from user[0] to user[1]
             await expect(
                 users[0].Token.transfer(users[1].address, 100000)
             ).to.be.revertedWith("Not enough tokens")
