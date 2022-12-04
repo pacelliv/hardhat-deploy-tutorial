@@ -53,7 +53,7 @@ You need to follow the same installation instruccions as before but choose a dif
 
 ### Installing Yarn
 
-For this tutorial we will use [Yarn] as our package manager. To install it run in the terminal:
+For this tutorial we will use [Yarn](https://yarnpkg.com/) as our package manager. To install it run in the terminal:
 
 ```
 npm install -g yarn
@@ -271,8 +271,6 @@ Create a new directory called `deploy` in the project root, inside it create a n
 Let's start with code below and it will be explain soon, but for now paste this code into the deploy script.
 
 ```javascript
-const { network } = require("hardhat")
-
 module.exports = async (hre) => {
     const { deployments, getNamedAccounts } = hre
     const { deploy } = deployments
@@ -338,8 +336,6 @@ You contract was deployed to the `in-memory` Hardhat network and the output indi
 Now we can write test against this contract, but first let's add comments to the deploy script to explain each line that matters:
 
 ```javascript
-const { network } = require("hardhat")
-
 module.exports = async (hre) => {
     const { deployments, getNamedAccounts } = hre // we get the deployments and the getNamedAccounts which are provided by Hardhat Runtime Environment (hre)
     const { deploy } = deployments // the deployment field itself contains the deploy function from hardhat-deploy
