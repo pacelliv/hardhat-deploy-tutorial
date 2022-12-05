@@ -760,7 +760,7 @@ Now let's add some `console.log` statements to the `transfer()` function as if y
     }
 ```
 
-To log out we're going to execute only one test by using `--grep` and the title of the hook, run the following command:
+This time we're going to execute a variation of the test command that will allow us to run a specific test, this feature is convenient because it allow us to avoid executing the whole script and to focus on the output of one test. This is achived by including `--grep` and the title of the hook. Run the following command:
 
 ```
 yarn hardhat test --grep "Allows transactions between accounts if sender have enough tokens"
@@ -884,13 +884,13 @@ It's important to indicate that after deploying your contract, `hardhat-deploy` 
 
 This new directory contains `deployments/goerli/Token.json` which contains useful information about your deployed contract, such as address, abi, and the solidity input used to create it.
 
-### Verifying your contract
+### Verifying your smart contract
 
-If you check in the `Contract` of your recently deployed contract in Etherscan, you will see the ByteCode of your contract, not the actual code. To ready your contract it needs to be verified.
+If you check in the `Contract` tab of your recently deployed contract in Etherscan, you will see the ByteCode of your contract, but not the actual code. You need to verify the contract in order to be readable.
 
-Verifying your contract is important because it allows people to know if the product your contract is claiming to offer is authentic, also a verified contract allows people to know if it's safe to interact with a contract.
+Due to the immutable nature of blockchains, any bugs or errors will become permanent once published and could lead to huge economic losses. To avoid such problems verification is required to check the correctness and security of the smart contract, and it allows people to know if the product your contract is claiming to offer is authentic.
 
-You can verify your contract with sourcify, Etherscan or both. To be able to verify from Etherscan you're going to need a Api key, you can get one [here](https://etherscan.io/apis) for **free**.
+You can verify your contract with Sourcify, Etherscan or both if you like.
 
 For sourcify you can run the following command:
 
@@ -907,13 +907,13 @@ verifying Token (0xC8Ab607359e29fDc095fE9cf68c10E3544355338 on chain 5) ...
 
 Look up your verified contract in [Sourcify](https://sourcify.dev/).
 
-For Etherscan run the following command:
+To verify with Etherscan you're going to need an Api key, you can get one [here](https://etherscan.io/apis) for **free**. Now run the following command:
 
 ```
 yarn hardhat --network goerli etherscan-verify --api-key <api_key>
 ```
 
-You should see:
+You should see in your terminal:
 
 ```
 verifying Token (0xC8Ab607359e29fDc095fE9cf68c10E3544355338) ...
@@ -921,7 +921,7 @@ waiting for result...
  => contract Token is now verified
 ```
 
-Go back to [Etherscan](https://goerli.etherscan.io/) and check in the `Contract` tab to see your verified contract.
+Go back to [Etherscan](https://goerli.etherscan.io/) and check in the `Contract` tab to see your verified contract, now it should appear a green checkmark to indicate that it's verified.
 
 ## Resources
 
