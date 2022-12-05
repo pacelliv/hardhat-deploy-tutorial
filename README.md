@@ -760,7 +760,7 @@ Now let's add some `console.log` statements to the `transfer()` function as if y
     }
 ```
 
-This time we're going to execute a variation of the test command that will allow us to run a specific test, this feature is convenient because it allow us to avoid executing the whole script and to focus on the output of one test. This is achived by including `--grep` and the title of the hook. Run the following command:
+This time we're going to execute a variation of the test command that will allow us to run a specific test, this feature is convenient because it allow us to avoid executing the whole script and to focus on the output of one test. This is achieved by including `--grep` and the title of the hook. Run the following command:
 
 ```
 yarn hardhat test --grep "Allows transactions between accounts if sender have enough tokens"
