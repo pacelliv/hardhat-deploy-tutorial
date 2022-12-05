@@ -397,7 +397,7 @@ module.exports = {
 
 ### Writing tests
 
-Create a new directory called `test` in the project root directory; inside the `test` create a new file called `token.test.js`.
+Create a new directory called `test` in the project's root directory and inside it create a new file called `token.test.js`.
 
 We will build our test step by step and we will start the code below, for now paste it into `token.test.js`.
 
